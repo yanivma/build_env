@@ -9,15 +9,14 @@ BUILD_ID=`date +"%m-%d-%Y_%H-%M-%S"`
 PACK_ONLY=false
 
 # project sources
-DRIVER_REF=origin/mc_internal_39
-COMPAT_REF=origin/dt
-COMPAT_WIRELESS_REF=origin/dt
-HOSTAP_REF=origin/android_jb_mr1_39
+DRIVER_REF=origin/mc_internal
+COMPAT_REF=origin/internal
+COMPAT_WIRELESS_REF=origin/mc_internal
+HOSTAP_REF=origin/android_jb_mr1
 TI_UTILS_REF=origin/mc_internal
 WL18XX_FW_REF=origin/master
 TARGET_SCRIPTS_REF=origin/sitara
 GIT_REMOTE=origin
-
 
 function set_linux_kernel ()
 {

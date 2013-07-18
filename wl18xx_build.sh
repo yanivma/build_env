@@ -23,35 +23,6 @@ declare -A hostap_brnach["r8"]="android_jb"
 declare -A hostap_patches["r8"]=""
 
 
-##### Kernel 3.9
-
-
-declare -A wl18xx_download_target["r8"]="git://github.com/TI-OpenLink/wl18xx.git"
-declare -A wl18xx_branch["r8"]="mc_internal_39"
-
-declare -A compatwireless_download_target["r8"]="git://github.com/TI-OpenLink/compat-wireless.git"
-declare -A compatwireless_branch["r8"]="dt"
-
-declare -A compat_download_target["r8"]="git://github.com/TI-OpenLink/compat.git"
-declare -A compat_branch["r8"]="dt"
-
-declare -A ti_utils_download_target["r8"]="git://github.com/TI-OpenLink/18xx-ti-utils.git"
-declare -A ti_utils_branch["r8"]="mc_internal"
-
-declare -A wl18xx_fw_download_target["r8"]="git://github.com/TI-OpenLink/wl18xx_fw.git"
-declare -A wl18xx_fw_branch["r8"]="master"
-
-declare -A hostap_download_target["r8"]="git://github.com/TI-OpenLink/hostap.git"
-declare -A hostap_brnach["r8"]="android_jb_mr1_39"
-declare -A hostap_patches["r8"]=""
-
-
-
-
-
-
-
-
 if [ ! -e setup-env ]
 then
 	echo "No setup-env"
@@ -150,9 +121,9 @@ function crda ()
 	if [ x"$stage" = "xinstall"  -o x"$stage" = "xall" ]
 	then
 		cd ${WORK_SPACE}/crda-1.1.1
-        DESTDIR=${ROOTFS} make USE_OPENSSL=1 UDEV_RULE_DIR="etc/udev/rules.d/" install -j$(egrep '^processor' /proc/cpuinfo | wc -l) || exit 1		mkdir -p ${ROOTFS}/usr/lib/crda
+		DESTDIR=${ROOTFS} make USE_OPENSSL=1 UDEV_RULE_DIR="etc/udev/rules.d/" install -j$(egrep '^processor' /proc/cpuinfo | wc -l) || exit 1
+		mkdir -p ${ROOTFS}/usr/lib/crda
 		cp 2011.04.28-regulatory.bin ${ROOTFS}/usr/lib/crda/regulatory.bin
-        cp ${BASE_ROOTFS_DIR}/sbin/regdbdump ${ROOTFS}/sbin/regdbdump
 	fi
 	if [ x"$stage" = "xclean" ]
 	then
@@ -1115,7 +1086,7 @@ case $package in
 				;;
 		esac
 		;;
-	all)        
+	all)
         libnl "all"
         openssl "all"
         crda "all"        
