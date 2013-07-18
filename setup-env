@@ -1,0 +1,61 @@
+#!/bin/bash
+
+#                            \\\// 
+#                           -(o o)- 
+#========================oOO==(_)==OOo=======================
+#
+# This file contains the exports needed for automating the
+# build process of WLAN/Bluetooth components.
+# Place this file in the same directory with wl12xx_build.sh/wl12xx_build_bt.sh
+# build scripts. No need to run 'source setup-env', the build
+# scripts will perfom it internaly. 
+#
+#===========================================================
+# User specific environment settings
+export BUILD_WORKSPACE=`pwd`
+
+export CROSS_COMPILE=arm-arago-linux-gnueabi-
+export CROSS_COMPILE_DIR=/home/x0144805/arago-2011.09/armv7a
+export PATH=$PATH:${CROSS_COMPILE_DIR}/bin
+
+export IMAGE_BASELINE=/sim/openlink/image_baseline
+export KERNEL_VERSIONTREE=${IMAGE_BASELINE}/kernel3_9
+
+export BASE_BOOT_DIR=${IMAGE_BASELINE}/boot
+export BASE_ADDONS_DIR=${IMAGE_BASELINE}/addons
+export BASE_SCRIPTS_DIR=${IMAGE_BASELINE}/target_scripts
+export BASE_ROOTFS_DIR=${IMAGE_BASELINE}/rootfs
+export ROOTFS=${BUILD_WORKSPACE}/rootfs
+export WORK_SPACE=`pwd`
+export GIT_TREE=${WORK_SPACE}/wl18xx
+export GIT_COMPAT_TREE=${WORK_SPACE}/compat
+export SITARA_KERNEL=${BUILD_WORKSPACE}/linux-am33x
+export KLIB_BUILD=${SITARA_KERNEL}
+
+export KLIB_BUILD=${SITARA_KERNEL}
+
+export BUILD_VERSION="r8"
+# MACHINE_TYPE - The target machine type. Can have one of the following values: "am1808" , "omap3evm" , "am335x"
+# This is needed to build bluetooth components.
+# This parameter is not relevant for ti814x board.
+export MACHINE_TYPE="am335x"
+
+#===========================================================
+export ARCH="arm"
+export MY_PREFIX="/usr"
+export MY_SYSCONFDIR="/etc"
+export MY_LOCALSTATEDIR="/var"
+export CC="${CROSS_COMPILE}gcc"
+export CXX="${CROSS_COMPILE}g++"
+export AR="${CROSS_COMPILE}ar"
+export RANLIB="${CROSS_COMPILE}ranlib"
+export CFLAGS="${CFLAGS} -I${ROOTFS}${MY_PREFIX}/include"
+export CPPFLAGS="${CFLAGS}"
+export LDFLAGS="${LDFLAGS} -L${ROOTFS}${MY_PREFIX}/lib"
+export PKG_CONFIG_SYSROOT_DIR=${ROOTFS}
+export PKG_CONFIG_PATH="${ROOTFS}${MY_PREFIX}/lib/pkgconfig:${ROOTFS}/lib/pkgconfig"
+export PKG_CONFIG_LIBDIR=""
+export PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=""
+export PKG_CONFIG_ALLOW_SYSTEM_LIBS=""
+LS=/bin/ls
+
